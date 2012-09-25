@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div class="container">
+      <header>
+        <nav class="round">
+          <ul>
+            <li><%= link_to "Home", '#' %></li>
+            <li><%= link_to "Users", '#' %></li>
+            <li><%= link_to "Tasks", '#' %></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="round">
+        <%= yield %>
+      </section>
+    </div>
 </body>
 </html>
