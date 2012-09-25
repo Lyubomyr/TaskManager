@@ -23,13 +23,14 @@ end
 gem 'jquery-rails'
 
 group :development do 
-	gem 'rspec-rails', '2.6.1'
+	gem 'rspec-rails', '2.8.1'
 	gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 end
 
 group :test do 
-	gem 'rspec-rails', '2.6.1'
+	gem 'rspec-rails', '2.8.1'
 	gem 'webrat', '0.7.1'
+	gem 'factory_girl_rails', '1.0'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
