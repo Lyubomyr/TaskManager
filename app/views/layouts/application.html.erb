@@ -11,13 +11,16 @@
       <header>
         <nav class="round">
           <ul>
-            <li><%= link_to "Home", '#' %></li>
-            <li><%= link_to "Users", '#' %></li>
+            <li><%= link_to "Home", '/' %></li>
+            <li><%= link_to "Users", 'users' %></li>
             <li><%= link_to "Tasks", '#' %></li>
           </ul>
         </nav>
       </header>
       <section class="round">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
         <%= yield %>
       </section>
     </div>
