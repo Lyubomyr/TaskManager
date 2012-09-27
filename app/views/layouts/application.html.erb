@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TaskManager</title>
+  <title>Task Manager - <%= @title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,9 +11,15 @@
       <header>
         <nav class="round">
           <ul>
-            <li><%= link_to "Home", '/' %></li>
-            <li><%= link_to "Users", 'users' %></li>
-            <li><%= link_to "Tasks", '#' %></li>
+            <li><%= link_to "Home", root_path%></li>
+            <% if signed_in? %>
+              <li><%= link_to "Profile", current_user %></li>
+            <% end %>
+            <% if signed_in? %>
+              <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign in", signin_path %></li>
+            <% end %>
           </ul>
         </nav>
       </header>

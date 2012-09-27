@@ -49,7 +49,7 @@ describe UsersController do
 
       it "should have the right title" do
         post :create, :user => @attr
-        response.should have_selector("title", :content => "Sign up")
+        response.should have_selector("title", :content => "Task Manager - Sign up")
       end
 
       it "should render the 'new' page" do
@@ -80,6 +80,12 @@ describe UsersController do
         post :create, :user => @attr
         flash[:success].should =~ /user successfuly created/i
       end
+
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
+
     end
   end
 
