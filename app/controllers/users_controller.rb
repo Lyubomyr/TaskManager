@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :only => [:index, :show, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
+  before_filter :admin_user,   :only => :destroy
 
   def index
         @title = "All users"
@@ -45,6 +46,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    flash[:success] = "User '#{user.name}' destroyed."
+    user.destroy
+    redirect_to users_path
+  end
+
   private
 
   def authenticate
@@ -54,5 +62,13 @@ class UsersController < ApplicationController
   def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
+  end
+
+  def admin_user
+      if current_user == nil
+        redirect_to(signin_path)
+      elsif current_user.admin? == false
+        redirect_to(root_path)
+      end
   end
 end

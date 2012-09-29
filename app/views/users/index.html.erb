@@ -1,6 +1,12 @@
 <h1>All users</h1>
 <ol>
 <% @users.each_with_index do |user, index|%>
-<li><%= user.name %>, <%= user.email %> </li>
+<li><%= user.name %>, <%= user.email %>
+<%= link_to user.name, user %>
+  <% if current_user.admin? %>
+  | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+                                :title => "Delete #{user.name}" %>
+  <% end %>
+</li>
 <% end %>
 </ol>
