@@ -28,7 +28,7 @@ module SessionsHelper
 
 	def redirect_back_or(default)
 		redirect_to(session[:return_to] || default)
-	 	session[:return_to] = nil #clear return_to
+	 	session[:return_to] = nil #clear_return_to
 	end
 
 	def current_user?(user)

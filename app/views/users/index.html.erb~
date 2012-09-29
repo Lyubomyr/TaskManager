@@ -1,6 +1,6 @@
 <h1>All users</h1>
-<ol>
+<ul>
 <% @users.each_with_index do |user, index|%>
 <li><%= user.name %>, <%= user.email %> </li>
 <% end %>
-</ol>
+</ul>
