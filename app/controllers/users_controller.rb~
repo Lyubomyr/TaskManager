@@ -14,8 +14,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @title = "User"
     @user = User.find(params[:id])
+    @tasks = @user.tasks.paginate(:page => params[:page])
+    @title = @user.name
   end
 
   def create
@@ -65,9 +66,9 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-      if !current_user
+      if current_user == nil
         redirect_to(signin_path)
-      elsif !current_user.admin?
+      elsif current_user.admin? == false
         redirect_to(root_path)
       end
   end

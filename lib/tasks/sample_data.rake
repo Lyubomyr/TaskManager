@@ -1,6 +1,6 @@
 namespace :db do
   desc "Fill database with sample data"
-  task :populate => :environment do
+  task :samples => :environment do
     Rake::Task['db:reset'].invoke
     admin = User.create!(:name => "qwest57",
                  :email => "qwest57@gmail.com",
@@ -9,12 +9,17 @@ namespace :db do
     admin.toggle!(:admin)
     99.times do |n|
       name  = Faker::Name.name
-      email = "example-#{n+1}@gmail.com"
+      email = Faker::Internet.email
       password  = "password"
       User.create!(:name => name,
                    :email => email,
                    :password => password,
                    :password_confirmation => password)
+    end
+    User.all(:limit => 6).each do |user|
+      5.times do
+        user.tasks.create!(:title =>Faker::Company.catch_phrase,:content => Faker::Lorem.sentence(5))
+      end
     end
   end
 end

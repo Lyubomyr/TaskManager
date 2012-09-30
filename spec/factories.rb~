@@ -10,7 +10,7 @@ Factory.sequence :email do |n|
 end
 
 Factory.define :task do |task|
-  task.name "Foo"
+  task.title "Foo"
   task.content "Foo bar"
   task.association :user
 end

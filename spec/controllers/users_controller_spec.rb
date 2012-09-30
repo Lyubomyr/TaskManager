@@ -82,6 +82,14 @@ describe UsersController do
       	  get :show, id: @user
       	  assigns(:user).should == @user
     	end
+
+	    it "should show the user's tasks" do
+	      task1 = Factory(:task, :user => @user, :title => "task1", :content => "Foo bar")
+	      task2 = Factory(:task, :user => @user, :title => "task2", :content => "Baz quux")
+	      get :show, :id => @user
+	      response.should have_selector("span.content", :content => task1.content)
+	      response.should have_selector("span.content", :content => task2.content)
+	    end
     end
   end
 

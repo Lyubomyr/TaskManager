@@ -14,8 +14,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @title = "User"
     @user = User.find(params[:id])
+    @tasks = @user.tasks
+    @title = @user.name
   end
 
   def create

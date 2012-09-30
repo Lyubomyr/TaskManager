@@ -14,11 +14,9 @@
 		  <td class="task">
 		    <b> <span class="name"><%= task.title %></span> </b><br>
 		    <span class="content"><%= task.content %></span><br>
-		    <i>
 		    <span class="timestamp">
 		      Created <%= time_ago_in_words(task.created_at) %> ago.
 		    </span>
-		    </i>
 		  </td>
 		</tr>
 		<% end %>

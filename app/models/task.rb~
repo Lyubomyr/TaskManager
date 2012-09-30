@@ -12,7 +12,12 @@
 
 class Task < ActiveRecord::Base
   belongs_to :user
-
   attr_accessible :content, :name
+
+  validates :name, :presence => true, :length => { :maximum => 50 }
+  validates :content, :presence => true, :length => { :maximum => 140 }
+  validates :user_id, :presence => true
+
+  default_scope :order => 'tasks.created_at DESC'
 
 end
