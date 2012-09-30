@@ -2,11 +2,14 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -153,4 +156,27 @@ describe User do
     end
   end
 
+  describe "task associations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      @task1 = Factory(:task, :user => @user, :created_at => 1.day.ago)
+      @task2 = Factory(:task, :user => @user, :created_at => 1.hour.ago)
+    end
+
+    it "should have a tasks attribute" do
+      @user.should respond_to(:tasks)
+    end
+
+    it "should have the right tasks in the right order" do
+      @user.tasks.should == [@task2, @task1]
+    end
+
+    it "should destroy associated tasks" do
+      @user.destroy
+      [@task1, @task2].each do |task|
+        Task.find_by_id(task.id).should be_nil
+      end
+    end
+  end
 end
