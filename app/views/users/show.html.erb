@@ -1,29 +1,30 @@
-<table class="profile">
-    <tr class="sidebar round">
-      <strong>Name</strong> <%= @user.name %><br />
-      <strong>Email</strong> <%= @user.email %><br />
-      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-      <strong>Tasks</strong> <%= @user.tasks.count %>
-    </tr>
-  <tr>
-    <td class="main">
-      <% unless @user.tasks.empty? %>
-        <table class="tasks" summary="User tasks">
-             	<% @user.tasks.each do |task| %>
-             	<tr>
-		  <td class="task">
-		    <b> <span class="name"><%= task.title %></span> </b><br>
-		    <span class="content"><%= task.content %></span><br>
-		    <i>
-		    <span class="timestamp">
-		      Created <%= time_ago_in_words(task.created_at) %> ago.
-		    </span>
-		    </i>
-		  </td>
-		</tr>
-		<% end %>
-        </table>
-      <% end %>
-    </td>
-  </tr>
-</table>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @user.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:admin) %>:</strong></dt>
+  <dd><%= @user.admin %></dd>
+</dl>
+  <h3> User Tasks: </h3>
+  <% unless @user.tasks.empty? %>
+     	<% @tasks.each do |task| %>
+		<dl class="dl-horizontal">
+		  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+		  <dd><strong><%= task.title %></strong></dd>
+		  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+		  <dd><%= task.content %></dd>
+		  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
+		  <dd><i><%= task.created_at %> </i></dd>
+		</dl>
+     	<% end %>
+
+     <% else %>
+     User have no tasks yet
+  <% end %>
+<%= will_paginate @tasks%>

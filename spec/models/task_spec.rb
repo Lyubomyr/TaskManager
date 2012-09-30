@@ -50,7 +50,7 @@ describe Task do
     end
 
     it "should reject long title" do
-      @user.tasks.build(:title => "a" * 51).should_not be_valid
+      @user.tasks.build(:title => "a" * 101).should_not be_valid
     end
 
     it "should require nonblank content" do
@@ -58,7 +58,7 @@ describe Task do
     end
 
     it "should reject long content" do
-      @user.tasks.build(:content => "a" * 141).should_not be_valid
+      @user.tasks.build(:content => "a" * 251).should_not be_valid
     end
   end
 

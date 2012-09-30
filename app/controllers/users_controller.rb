@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
         @title = "All users"
-  	@users = User.all
+  	@users = User.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks
+    @tasks = @user.tasks.paginate(:page => params[:page], :per_page => 5)
     @title = @user.name
   end
 

@@ -14,8 +14,8 @@ class Task < ActiveRecord::Base
   belongs_to :user
   attr_accessible :content, :title
 
-  validates :title, :presence => true, :length => { :maximum => 50 }
-  validates :content, :presence => true, :length => { :maximum => 140 }
+  validates :title, :presence => true, :length => { :maximum => 100 }
+  validates :content, :presence => true, :length => { :maximum => 250 }
   validates :user_id, :presence => true
 
   default_scope :order => 'tasks.created_at DESC'

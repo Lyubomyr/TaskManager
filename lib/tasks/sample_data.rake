@@ -17,8 +17,8 @@ namespace :db do
                    :password_confirmation => password)
     end
     User.all(:limit => 6).each do |user|
-      5.times do
-        user.tasks.create!(:title =>Faker::Company.catch_phrase,:content => Faker::Lorem.sentence(5))
+      6.times do
+        user.tasks.create!(:title =>Faker::Company.catch_phrase,:content => Faker::Lorem.sentence(15))
       end
     end
   end

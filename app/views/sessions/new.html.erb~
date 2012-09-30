@@ -10,7 +10,7 @@
   <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
+      <%= f.text_field :password, :class => 'text_field' %>
     </div>
   </div>
   <div class="form-actions">
