@@ -1,0 +1,20 @@
+<%= form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
+  <p class="text-error">
+  	<%= render 'shared/error_messages', :object => f.object %>
+  </p>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :content, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, :size => "10x5" ,:class => 'text_area' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

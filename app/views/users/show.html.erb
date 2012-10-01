@@ -23,8 +23,9 @@
 		  <dd><i><%= task.created_at %> </i></dd>
 		</dl>
      	<% end %>
-
      <% else %>
-     User have no tasks yet
+     User have no tasks yet.<br>
   <% end %>
 <%= will_paginate @tasks%>
+
+     Create   <%= link_to "New Task", root_path %>

@@ -12,6 +12,9 @@
  *= require_tree .
 */
 
-.flash{
+div.flash{
 	color: #336633;
 }
+div.error{
+		color: red;
+	}
