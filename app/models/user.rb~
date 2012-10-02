@@ -13,7 +13,8 @@
 #
 
 class User < ActiveRecord::Base
-	has_many :tasks
+	has_many :tasks_users
+	has_many :tasks, through: :tasks_users
 
 	attr_accessor :password
 	attr_accessible :name, :email, :password, :password_confirmation
@@ -60,6 +61,5 @@ class User < ActiveRecord::Base
 	def secure_hash(string)
 		Digest::SHA2.hexdigest(string)
 	end
-
 
 end

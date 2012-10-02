@@ -1,31 +1,16 @@
 <%- model_class = User -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+    <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:admin) %>:</strong></dt>
-  <dd><%= @user.admin %></dd>
+  <dt><strong>Tasks:</strong></dt>
+  <a href="<%= user_tasks_path(current_user) %>">
+    <dd><%= pluralize(current_user.tasks.count, "task") %></dd>
+  </a>
 </dl>
-  <h3> User Tasks: </h3>
-  <% unless @user.tasks.empty? %>
-     	<% @tasks.each do |task| %>
-		<dl class="dl-horizontal">
-		  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-		  <dd><strong><%= task.title %></strong></dd>
-		  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-		  <dd><%= task.content %></dd>
-		  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
-		  <dd><i><%= task.created_at %> </i></dd>
-		</dl>
-     	<% end %>
-     <% else %>
-     User have no tasks yet.<br>
-  <% end %>
-<%= will_paginate @tasks%>
 
-     Create   <%= link_to "New Task", root_path %>
+</div>

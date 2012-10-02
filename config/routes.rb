@@ -1,14 +1,13 @@
 TaskManager::Application.routes.draw do
-  get "tasks/new"
-
   root :to => "pages#home"
 
   get "pages/home"
   get "pages/about"
 
-  resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :tasks, :only => [:create, :destroy]
+  resources :users do
+	resources :tasks
+  end
 
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'

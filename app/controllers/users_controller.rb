@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+ class UsersController < ApplicationController
   before_filter :authenticate, :only => [:index, :show, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => :destroy
@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks.paginate(:page => params[:page], :per_page => 5)
     @title = @user.name
   end
 

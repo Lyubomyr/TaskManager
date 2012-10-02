@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @title = "Home"
-    @task = Task.new if signed_in?
+    	@title = "Home"
+   	@tasks = current_user.tasks.paginate(:page => params[:page], :per_page => 5)
   end
 
   def about

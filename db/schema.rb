@@ -11,18 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930063327) do
+ActiveRecord::Schema.define(:version => 20121002130205) do
+
+  create_table "mediators", :force => true do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+  end
+
+  add_index "mediators", ["task_id"], :name => "index_mediators_on_task_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.string   "content"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"
-  add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
