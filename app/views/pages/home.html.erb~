@@ -1,18 +1,20 @@
-<div class="container">
-    <div class="row">
-	<% if signed_in? %>
-		<div class="span5">
-		        <h1>List of tasks</h1>
-			<%= render 'shared/tasks_form' %>
-		</div>
-		<div class="span5">
-			<%= render 'shared/user_info' %>
-		</div>
-	<% else %>
-	<div class="span10">
-	  <h2> Home page for Task Manager </h2>
-	  <%= link_to "Sign up now!", new_user_path %>
-	</div>
-	<% end %>
-    </div>
-</div>	
+<div class="page-header">
+  <h1>Home</h1>
+  <title>Home</title>
+</div>
+<% unless signed_in?%>
+  <div>
+     <h2>
+ 	Hello, Guest!
+ 	This is test Task Manager, with realy usefull content.
+ 	So, to start work with it, please,  <%= link_to "Sign up now!", new_user_path %>
+     </h2>
+  </div>
+<%else%>
+  <div>
+	 This is playground of user <b><%= current_user.name %></b><br>
+	 As a registered user you can:<br>
+	 <%= link_to "Edit your account", edit_user_path(current_user) %><br>
+	 <%= link_to "Create tasks", new_user_task_path(current_user) %><br>
+  </div>
+<% end %>

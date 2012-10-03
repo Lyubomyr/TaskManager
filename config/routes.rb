@@ -6,7 +6,9 @@ TaskManager::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users do
-	resources :tasks
+	resources :tasks do
+		put :share, on: :member
+	end
   end
 
   match '/signin',  :to => 'sessions#new'

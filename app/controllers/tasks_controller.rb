@@ -19,9 +19,9 @@ class TasksController < ApplicationController
   def create
     @task  = current_user.tasks.build(params[:task])
     if @task.save
-      Mediator.create(user_id:current_user.id, task_id: @task.id)
+      Sharing.create(user_id:current_user.id, task_id: @task.id)
       flash[:success] = "New task created!"
-      redirect_to user_path(current_user)
+      redirect_to user_tasks_path(current_user)
     else
       render 'new'
     end
@@ -49,4 +49,33 @@ class TasksController < ApplicationController
     task.destroy
     redirect_to user_tasks_url(current_user)
   end
+
+
+  def share
+
+
+    @task = Task.find(params[:id])
+    user_id = params[:sharing_id]
+    unless already_shared?(user_id, @task.id)
+	    Sharing.create(user_id: user_id, task_id: @task.id)
+	    flash[:success] = "Task #{@task.title} shared to #{User.find(user_id).name}"
+    else
+    	    flash[:error] = "This Task already shared to this user"
+    end
+  end
+
+  private
+
+  def already_shared?(user_id, task_id)
+  	tasks = Sharing.where("task_id=?", task_id )
+  	if tasks.empty?
+  		return false
+  	else
+  		tasks.each do |task|
+  			return true if (task.user_id == user_id)
+  		end
+  		false
+  	end
+  end
+
 end

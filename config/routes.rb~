@@ -1,6 +1,4 @@
 TaskManager::Application.routes.draw do
-  get "tasks/new"
-
   root :to => "pages#home"
 
   get "pages/home"

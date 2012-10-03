@@ -5,12 +5,14 @@
             new_user_task_path(current_user),
             :class => 'btn btn-primary' %>
 </div>
+<%unless @tasks.empty?%>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:created_by) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -21,7 +23,8 @@
         <td><%= link_to task.id, user_task_path(current_user, task) %></td>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
-        <td><%=l task.created_at %></td>
+	<td><%= task.created_by %></td>
+        <td><%=l task.created_at.to_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_task_path(current_user, task), :class => 'btn btn-mini' %>
@@ -35,4 +38,5 @@
     <% end %>
   </tbody>
 </table>
+<%end%>
   	<%= will_paginate %>

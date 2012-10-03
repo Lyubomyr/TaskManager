@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002130205) do
+ActiveRecord::Schema.define(:version => 20121003072038) do
 
-  create_table "mediators", :force => true do |t|
-    t.integer "user_id"
-    t.integer "task_id"
+  create_table "sharings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "mediators", ["task_id"], :name => "index_mediators_on_task_id"
+  add_index "sharings", ["task_id"], :name => "index_sharings_on_task_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "title"
