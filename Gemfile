@@ -7,7 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 gem 'will_paginate', '3.0.3'
-
+gem 'gon'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -27,6 +27,12 @@ group :development do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate'
 	gem 'faker', '1.1.2'
+
+
+
+	gem 'debugger', :require => 'ruby-debug', :platforms => :mri_19
+	gem 'ruby-debug', :platforms => :mri_18
+
 end
 
 group :test do

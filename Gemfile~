@@ -27,6 +27,12 @@ group :development do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate'
 	gem 'faker', '1.1.2'
+
+
+
+	gem 'debugger', :require => 'ruby-debug', :platforms => :mri_19
+	gem 'ruby-debug', :platforms => :mri_18
+
 end
 
 group :test do

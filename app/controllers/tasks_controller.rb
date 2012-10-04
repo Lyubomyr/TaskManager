@@ -7,8 +7,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = current_user.tasks.find(params[:id])
-    @title = current_user.name
+	gon.users_names = User.all.map do |user|
+				user.email
+			  end
+  	 @task = current_user.tasks.find(params[:id])
+    	@title = current_user.name
   end
 
   def new
@@ -52,30 +55,34 @@ class TasksController < ApplicationController
 
 
   def share
-
-
-    @task = Task.find(params[:id])
-    user_id = params[:sharing_id]
-    unless already_shared?(user_id, @task.id)
-	    Sharing.create(user_id: user_id, task_id: @task.id)
-	    flash[:success] = "Task #{@task.title} shared to #{User.find(user_id).name}"
+    task_id = params[:id]
+    task = Task.find(task_id)
+    user_id = sharing_user_id(params[:sharing_user_email])
+    if user_id
+	    unless already_shared?(user_id, task_id)
+		    Sharing.create(user_id: user_id, task_id: task_id)
+		    flash[:success] = "Task #{task.title} shared to #{User.find(user_id).name}"
+	    else
+	    	    flash[:error] = "This Task already shared to this user"
+	    end
     else
-    	    flash[:error] = "This Task already shared to this user"
+	    flash[:error] = "There is no user with such email"
     end
   end
 
   private
+  def sharing_user_id(sharing_user_email)
+	user = User.where("email=?", sharing_user_email)
+	!user.empty? ? user.first.id : false
+  end
 
   def already_shared?(user_id, task_id)
-  	tasks = Sharing.where("task_id=?", task_id )
-  	if tasks.empty?
-  		return false
-  	else
-  		tasks.each do |task|
-  			return true if (task.user_id == user_id)
-  		end
-  		false
-  	end
+  	shared_tasks = Sharing.where("task_id=?", task_id )
+
+	shared_tasks.each do |shared_task|
+		(shared_task.user_id == user_id) ? (return true) : false
+	end
+	false
   end
 
 end
