@@ -1,3 +1,9 @@
+<% javascript_tag do %>
+<% broadcast "/users" do %>
+	  $("#message").append("asdfksadkf");
+<% end %>
+<% end %>
+
 <%- model_class = Task -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>

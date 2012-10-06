@@ -1,0 +1,3 @@
+<% broadcast "/share" do %>
+  $("#message").append("FAYE WORKS!");
+<% end %>

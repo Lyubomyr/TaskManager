@@ -3,5 +3,10 @@
   <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
-<%= render 'shared/error_messages', :object => f.object %>
 <%= render :partial => 'form' %>
+
+<div id="test">Text:</div>
+
+<% broadcast "/users/new" do %>
+  $("#test").append("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
+<% end %>

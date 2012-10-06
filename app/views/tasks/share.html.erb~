@@ -1,0 +1,2 @@
+<div id="message">Message:<div>
+<%= render "tasks/share.js.erb" %>

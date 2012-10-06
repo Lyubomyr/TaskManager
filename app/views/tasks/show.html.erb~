@@ -10,11 +10,12 @@
   <dd><%= @task.content %></dd>
 </dl>
 
+
   <p class="text-error">
   	<%= render 'shared/error_messages', :object => @task %>
   </p>
 <div id="sharing">
-	<%= form_tag user_task_path(current_user, @task), :method => :put, remote: true do%>
+	<%= form_tag share_user_task_path(current_user, @task), remote: true do%>
 	<dt><strong>To share this task with other user set user email:</strong></dt>
 	<input id = "users" name ="sharing_user_email" type="text" data-provide="typeahead">
 	<%= submit_tag 'Share', action: :share %>

@@ -7,7 +7,7 @@ TaskManager::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users do
 	resources :tasks do
-		put :share, on: :member
+		post :share, on: :member
 	end
   end
 
