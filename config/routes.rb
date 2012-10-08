@@ -14,6 +14,7 @@ TaskManager::Application.routes.draw do
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
+  match '*a', :to => 'errors#routing'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

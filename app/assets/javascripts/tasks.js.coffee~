@@ -2,9 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-      <script type="text/javascript">
-        jQuery(document).ready(function() {
-            var alCities = ['Baltimore', 'Boston', 'New York', 'Tampa Bay', 'Toronto', 'Chicago', 'Cleveland', 'Detroit', 'Kansas City', 'Minnesota', 'Los Angeles', 'Oakland', 'Seattle', 'Texas'].sort();
-            $('#city').typeahead({source: alCities, items:5});
-        });
-    </script>
+PrivatePub.subscribe "/users/16", (data, channel) ->
+  	  alert(data.shared);

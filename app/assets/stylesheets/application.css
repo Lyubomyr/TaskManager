@@ -11,10 +11,13 @@
  *= require_self
  *= require_tree .
 */
+#flash{
+	color: red;
+}
 
 div.flash{
 	color: #336633;
 }
 div.error{
-		color: red;
+	color: red;
 	}

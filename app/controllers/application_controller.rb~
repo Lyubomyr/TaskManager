@@ -1,0 +1,7 @@
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  include SessionsHelper
+  	def update_user_with_task(user_id, task)
+		PrivatePub.publish_to("/users", task: task.title)
+	end
+end

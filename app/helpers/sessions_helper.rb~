@@ -39,6 +39,11 @@ module SessionsHelper
 	    user == current_user
 	end
 
+	def update_user_with_task(user_id, task)
+		@user_id = user_id
+		PrivatePub.publish_to("/users", task: task.title)
+	end
+
   private
 
     def user_from_remember_token

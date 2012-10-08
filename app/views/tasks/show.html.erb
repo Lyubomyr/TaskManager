@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
+<div id = "message">Message: </div>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @task.title %></dd>
@@ -10,11 +10,9 @@
   <dd><%= @task.content %></dd>
 </dl>
 
-
   <p class="text-error">
   	<%= render 'shared/error_messages', :object => @task %>
   </p>
-  <div id="message">Message: </div>
 <div id="sharing">
 	<%= form_tag share_user_task_path(current_user, @task), remote: true do%>
 	<dt><strong>To share this task with other user set user email:</strong></dt>

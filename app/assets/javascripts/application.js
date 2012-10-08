@@ -12,17 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require private_pub
 //= require twitter/bootstrap
 //= require_tree .
 
 jQuery(document).ready(function() {
     var users = gon.users_names
     $('#users').typeahead({source: users, items:5});
-});
-
-$(function() {
-  var faye = new Faye.Client('http://localhost:9292/faye');
-  faye.subscribe("/users", function(data) {
-    eval(data);
-  });
 });

@@ -7,13 +7,14 @@ TaskManager::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users do
 	resources :tasks do
-		put :share, on: :member
+		post :share, on: :member
 	end
   end
 
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
+  match '*a', :to => 'errors#routing'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

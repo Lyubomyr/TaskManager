@@ -201,7 +201,7 @@ DEPENDENCIES
   faye (= 0.8.5)
   gon (= 4.0.0)
   jquery-rails
-  private_pub
+  private_pub (= 1.0.3)
   rails (= 3.2.8)
   rspec-rails (= 2.8.1)
   ruby-debug

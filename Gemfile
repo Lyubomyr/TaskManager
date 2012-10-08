@@ -10,7 +10,7 @@ gem 'will_paginate', '3.0.3'
 gem 'gon', '4.0.0'
 gem 'faye', '0.8.5'
 gem 'thin', '1.5.0'
-gem 'private_pub'
+gem 'private_pub', '1.0.3'
 
 # Gems used only for assets and not required
 # in production environments by default.

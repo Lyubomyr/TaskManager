@@ -1,5 +1,9 @@
-<% if @user_id == current_user.id %>
-<% broadcast "/users" do %>
-	  $("#message").append("<%= @task.title  %>");
-<% end %>
-<%end%>
+$("#flash").html("<%= escape_javascript(@message) %>");
+$("#flash").show(300);
+
+<% if @user_path  %>
+	<% publish_to @user_path do %>
+	  	  $("table.table").append("<%= j render(@task) %>");
+	  	  $("tr#<%= dom_id(@task) %>").effect('highlight');
+	<% end %>
+<% end %>	

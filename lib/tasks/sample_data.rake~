@@ -1,6 +1,7 @@
 namespace :db do
   desc "Fill database with sample data"
   task :samples => :environment do
+    Rake::Sharing['db:reset'].invoke
     Rake::Task['db:reset'].invoke
     admin = User.create!(:name => "qwest57",
                  :email => "qwest57@gmail.com",
@@ -18,7 +19,7 @@ namespace :db do
     end
     User.all(:limit => 6).each do |user|
       6.times do
-        user.tasks.create(:title =>Faker::Company.catch_phrase,:content => Faker::Lorem.sentence(15))
+        user.tasks.create!(:title =>Faker::Company.catch_phrase,:content => Faker::Lorem.sentence(15))
       end
     end
   end
