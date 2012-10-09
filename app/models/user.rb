@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-	has_many :sharings
+	has_many :sharings, :dependent => :destroy
 	has_many :tasks, through: :sharings
 
 	attr_accessor :password

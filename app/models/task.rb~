@@ -5,13 +5,12 @@
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  content    :string(255)
-#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class Task < ActiveRecord::Base
-  has_many :sharings
+  has_many :sharings, :dependent => :destroy
   has_many :users, through: :sharings
   attr_accessible :content, :title
   attr_accessor :created_by
@@ -24,7 +23,8 @@ class Task < ActiveRecord::Base
   default_scope :order => 'tasks.created_at DESC'
 
   def find_owner
-  	self.created_by = Sharing.where(task_id: self.id).first
+  	share = Sharing.where("task_id=?", self.id).first
+  	self.created_by = User.find_by_id(share.user_id).name if share
   end
 
 end

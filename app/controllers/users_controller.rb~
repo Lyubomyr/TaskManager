@@ -49,6 +49,7 @@
   def destroy
     user = User.find(params[:id])
     flash[:success] = "User '#{user.name}' destroyed."
+    destroy_assoc_tasks(user)
     user.destroy
     redirect_to users_path
   end
@@ -66,5 +67,13 @@
       elsif current_user.admin? == false
         redirect_to(root_path)
       end
+  end
+
+  def destroy_assoc_tasks(user)
+  	sharings = Sharing.where("user_id=?", user.id)
+        sharings.each do |sharing|
+	users_count = Sharing.where("task_id = ?", sharing.task_id).count
+    	Task.find_by_id(sharing.task_id).destroy
+    end
   end
 end

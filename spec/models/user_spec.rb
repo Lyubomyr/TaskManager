@@ -13,10 +13,11 @@
 #
 
 require 'spec_helper'
+require 'pp'
 
 describe User do
 	before(:each) do
-		@attr = {name: "Example User", email: "user@example.com", password: "password", 			password_confirmation: "password"}
+		@attr = Factory.attributes_for(:user)
 	end
 
 	it "should create a new instance given valid attr" do
@@ -159,24 +160,17 @@ describe User do
   describe "task associations" do
 
     before(:each) do
-      @user = User.create(@attr)
-      @task1 = Factory(:task, :user => @user, :created_at => 1.day.ago)
-      @task2 = Factory(:task, :user => @user, :created_at => 1.hour.ago)
+      @user = Factory(:user_with_task)
+      @task = @user.tasks.last
     end
 
     it "should have a tasks attribute" do
       @user.should respond_to(:tasks)
     end
 
-    it "should have the right tasks in the right order" do
-      @user.tasks.should == [@task2, @task1]
-    end
-
     it "should destroy associated tasks" do
       @user.destroy
-      [@task1, @task2].each do |task|
-        Task.find_by_id(task.id).should be_nil
-      end
+      Sharing.where("task_id=?", @task.id).should be_empty
     end
   end
 end

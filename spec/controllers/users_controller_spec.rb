@@ -16,7 +16,7 @@ describe UsersController do
     describe "for signed-in users" do
 
       before(:each) do
-        @user = test_sign_in(Factory(:user))   #You can find  def test_sign_in method in spec_helper.rb
+        @user = test_sign_in(Factory(:user)) #You can find  def test_sign_in method in spec_helper.rb
         second = Factory(:user, :name => "Bob", :email => "another@example.com")
         third  = Factory(:user, :name => "Ben", :email => "another@example.net")
 
@@ -64,7 +64,7 @@ describe UsersController do
     it "should have the right title" do
     	get :new
     	response.should have_selector("title", content: "Sign up")
-	  end
+    end
   end
 
    describe "GET 'show'" do
@@ -95,14 +95,6 @@ describe UsersController do
       	  get :show, id: @user
       	  assigns(:user).should == @user
     	end
-
-	    it "should show the user's tasks" do
-	      task1 = Factory(:task, :user => @user, :title => "task1", :content => "Foo bar")
-	      task2 = Factory(:task, :user => @user, :title => "task2", :content => "Baz quux")
-	      get :show, :id => @user
-	      response.should have_selector("dd", :content => task1.content)
-	      response.should have_selector("dd", :content => task2.content)
-	    end
     end
   end
 
@@ -135,8 +127,7 @@ describe UsersController do
     describe "success" do
 
       before(:each) do
-        @attr = { :name => "New User", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
+        @attr = Factory.attributes_for(:user)
       end
 
       it "should create a user" do
@@ -209,8 +200,7 @@ describe UsersController do
     describe "success" do
 
       before(:each) do
-        @attr = { :name => "New Name", :email => "user@example.org",
-                  :password => "barbaz", :password_confirmation => "barbaz" }
+        @attr = Factory.attributes_for(:user)
       end
 
       it "should change the user's attributes" do

@@ -13,8 +13,8 @@
 #
 
 class User < ActiveRecord::Base
-	has_many :mediators
-	has_many :tasks, through: :mediators
+	has_many :sharings
+	has_many :tasks, through: :sharings
 
 	attr_accessor :password
 	attr_accessible :name, :email, :password, :password_confirmation
