@@ -12,6 +12,7 @@ gem 'faye', '0.8.5'
 gem 'thin', '1.5.0'
 gem 'private_pub', '1.0.3'
 gem 'jquery-rails'
+gem 'faker', '1.1.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,15 +28,12 @@ group :assets do
 end
 
 group :production do
-
 	gem "pg"
-	gem 'thin', '1.5.0'
 end
 
 group :development do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate'
-	gem 'faker', '1.1.2'
 	gem 'sqlite3'
 
 
