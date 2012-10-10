@@ -5,12 +5,13 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+
 gem 'will_paginate', '3.0.3'
 gem 'gon', '4.0.0'
 gem 'faye', '0.8.5'
 gem 'thin', '1.5.0'
 gem 'private_pub', '1.0.3'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,13 +26,17 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
-gem 'jquery-rails'
+group :production do
+
+	gem "pg"
+	gem 'thin', '1.5.0'
+end
 
 group :development do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate'
 	gem 'faker', '1.1.2'
-
+	gem 'sqlite3'
 
 
 	gem 'debugger', :require => 'ruby-debug', :platforms => :mri_19
@@ -40,6 +45,7 @@ group :development do
 end
 
 group :test do
+	gem 'sqlite3'
 	gem 'rspec-rails', '2.8.1'
 	gem 'webrat', '0.7.1'
 	gem 'factory_girl_rails', '1.0'
