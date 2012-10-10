@@ -1,14 +1,14 @@
 <div class="page-header">
-  <h1>Home</h1>
+  <h1>Task Manager Home</h1>
   <title>Home</title>
 </div>
 <% unless signed_in?%>
   <div>
-     <h2>
+     <h3>
  	Hello, Guest!
- 	This is test Task Manager, with realy usefull content.
+ 	This is test Rails project - Task Manager, with realy usefull content.
  	So, to start work with it, please,  <%= link_to "Sign up now!", new_user_path %>
-     </h2>
+     </h3>
   </div>
 <%else%>
   <div>

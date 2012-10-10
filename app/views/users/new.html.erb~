@@ -6,7 +6,3 @@
 <%= render :partial => 'form' %>
 
 <div id="test">Text:</div>
-
-<% broadcast "/users/new" do %>
-  $("#test").append("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
-<% end %>
