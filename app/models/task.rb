@@ -23,7 +23,7 @@ class Task < ActiveRecord::Base
   default_scope :order => 'tasks.created_at DESC'
 
   def find_owner
-  	share = Sharing.where("task_id=?", self.id).first
+  	share = Sharing.where("task_id=?", self.id).last
   	self.created_by = User.find_by_id(share.user_id).name if share
   end
 
