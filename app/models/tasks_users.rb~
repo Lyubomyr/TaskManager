@@ -1,5 +1,0 @@
-class TasksUsers < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :tasks
-  attr_accessible :task_id, :user_id
-end
