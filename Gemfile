@@ -13,6 +13,7 @@ gem 'thin', '1.5.0'
 gem 'private_pub', '1.0.3'
 gem 'jquery-rails'
 gem 'faker', '1.1.2'
+gem 'foreman', '0.60.2'
 
 # Gems used only for assets and not required
 # in production environments by default.

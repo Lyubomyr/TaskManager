@@ -1,4 +1,4 @@
-# Run with: rackup private_pub.ru -s thin -E production
+# Run with: rackup private_pub.ru -s thin -E production or foreman start
 require "bundler/setup"
 require "yaml"
 require "faye"
