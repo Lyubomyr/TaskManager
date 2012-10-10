@@ -1,1 +1,1 @@
-web: bundle exec thin -e production -R private_pub.ru start
+web: bundle exec thin -p $PORT -e production -R private_pub.ru start
